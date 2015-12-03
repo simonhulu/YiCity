@@ -8,12 +8,20 @@
 
 #import "YCViewController.h"
 #import "YCHeaderBar.h"
+#import "EDColor.h"
+@interface YCViewController()
+{
+    
+}
+
+@end
 @implementation YCViewController
 -(id)init
 {
     self = [super init];
     if (self) {
         _headerBar = [[YCHeaderBar alloc]initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 44)];
+        _headerBar.backgroundColor = [UIColor  grayColor] ;
         UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];

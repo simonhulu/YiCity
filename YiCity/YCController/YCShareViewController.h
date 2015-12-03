@@ -9,5 +9,6 @@
 #import "YCViewController.h"
 
 @interface YCShareViewController : YCViewController
-
+-(void)showSharePanel ;
+-(void)hideSharePanel ;
 @end

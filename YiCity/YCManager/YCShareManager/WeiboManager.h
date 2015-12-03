@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface WeiboManager : NSObject
-
+#import "WeiboSDK.h"
+@interface WeiboManager : NSObject<WeiboSDKDelegate>
++(WeiboManager *)sharedManager ;
+-(void)registerApp:(NSString *)appID ;
++(WBBaseRequest *)WeiboPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description ;
+-(BOOL)sendReq:(WBBaseRequest *)req ;
 @end

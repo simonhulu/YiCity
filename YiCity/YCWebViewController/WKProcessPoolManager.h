@@ -9,5 +9,6 @@
 #import <WebKit/WebKit.h>
 
 @interface WKProcessPoolManager : WKProcessPool
-
++(WKProcessPoolManager *)sharedManager ;
+-(void)setUserAgent:(void(^)())hander  ;
 @end

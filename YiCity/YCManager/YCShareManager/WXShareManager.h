@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface WXShareManager : NSObject
-
+#import "WXApi.h"
+@interface WXShareManager : NSObject<WXApiDelegate>
++(WXShareManager *)sharedManager ;
+-(void)registerApp:(NSString *)appID ;
++(SendMessageToWXReq *)WXPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description ;
+-(BOOL)sendReq:(SendMessageToWXReq *)req ;
+-(void)login;
 @end

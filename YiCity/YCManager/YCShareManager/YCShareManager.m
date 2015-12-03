@@ -10,6 +10,7 @@
 #import "WXApi.h"
 #import "WeiboSDK.h"
 #import "QQShareManager.h"
+#import "WXShareManager.h"
 #define WXAPPID @"wxbb74970568b02ab4"
 #define WEIBOAPPID @"1062189444"
 #define QQAPPID @"1104910915"
@@ -37,6 +38,10 @@ static YCShareManager *singleton = nil ;
     if ([req isKindOfClass:[QQBaseReq class]]) {
         QQBaseReq *qqReq = (QQBaseReq *)req ;
        ret =  [[QQShareManager sharedManager] sendReq:qqReq];
+    }else if ([req isKindOfClass:[SendMessageToWXReq class]])
+    {
+        SendMessageToWXReq *wxReq = (SendMessageToWXReq *)req ;
+        ret = [[WXShareManager sharedManager] sendReq:wxReq] ;
     }
     return ret ;
 }

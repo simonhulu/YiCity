@@ -11,6 +11,8 @@
 @interface YCHeaderBar : UIView
 @property(nonatomic,strong)UIButton *leftButton ;
 @property(nonatomic,strong)UIButton *rightButton ;
+@property(nonatomic,strong)NSString *title ;
+-(void)addToRightButtons:(UIButton *)btn ;
 @end
 @protocol YCHeaderBarOperation <NSObject>
 -(void)leftButtonClick ;

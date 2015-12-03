@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface YCHTMLButton : UIButton
+@property(nonatomic,strong)NSString *buttonId ;
+@property(nonatomic,strong)NSString *iconUrl ;
+@property(nonatomic,strong)NSString *jsFunction;
 
 @end

@@ -15,6 +15,7 @@
 {
     if ([viewController isKindOfClass:[YCWebViewController class]]) {
         YCWebViewController *webController = (YCWebViewController *)viewController ;
+        webController.isRoot = NO ;
         webController.showBackButton = YES ;
     }
     [super pushViewController:viewController animated:animated] ;

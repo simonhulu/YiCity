@@ -6,8 +6,16 @@
 //  Copyright (c) 2015 hezi. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 
+#import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
+@protocol YCWebNavigationDelegate;
 @interface YCWebView : WKWebView
+@property (nonatomic, weak) id <YCWebNavigationDelegate> navDelegate;
+@end
+
+@protocol YCWebNavigationDelegate <WKNavigationDelegate>
+
+- (void)webView:(YCWebView *)webView didUpdateProgress:(CGFloat)progress;
 
 @end
