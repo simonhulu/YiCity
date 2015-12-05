@@ -28,7 +28,37 @@ static WeiboManager *singleton = nil ;
     
     return self ;
 }
+#pragma mark -
+#pragma WBHttpRequestDelegate
 
+- (void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result
+{
+    NSLog(@"6");
+//    NSString *jsonCode = [NSString stringWithFormat:@"%@(%@)",self.successFunction,authResp.code];
+//    if ([self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
+//        [self.delegate otherDidLogin:jsonCode];
+//    }
+}
+
+- (void)request:(WBHttpRequest *)request didFailWithError:(NSError *)error;
+{
+    NSString *jsonCode = [NSString stringWithFormat:@"%@()",self.cancelFunction];
+    if ([self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
+        [self.delegate otherDidLogin:jsonCode];
+    }
+}
+
+-(void)login
+{
+    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+    request.redirectURI = @"http://www.yicity.com/";
+    request.scope = @"all";
+    request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
+                         @"Other_Info_1": [NSNumber numberWithInt:123],
+                         @"Other_Info_2": @[@"obj1", @"obj2"],
+                         @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+    [WeiboSDK sendRequest:request];
+}
 -(void)registerApp:(NSString *)appID
 {
     //    _tencentOAuth = [[TencentOAuth alloc]initWithAppId:appID andDelegate:self] ;

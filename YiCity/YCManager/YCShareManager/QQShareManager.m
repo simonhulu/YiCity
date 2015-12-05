@@ -98,7 +98,26 @@ static QQShareManager *singleton = nil ;
 
 -(void)tencentDidLogin
 {
-    NSLog(@"%@",_tencentOAuth.openId) ;
+    NSString *jsonCode = [NSString stringWithFormat:@"%@(%@)",self.successFunction,_tencentOAuth.openId];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
+        [self.delegate otherDidLogin:jsonCode];
+    }
+}
+
+-(void)tencentDidNotLogin:(BOOL)cancelled
+{
+    NSString *jsonCode = [NSString stringWithFormat:@"%@()",self.cancelFunction];
+    if ([self.delegate respondsToSelector:@selector(otherDidLoginFaild:)]) {
+        [self.delegate otherDidLoginFaild:jsonCode];
+    }
+}
+
+- (void)tencentFailedUpdate:(UpdateFailType)reason;
+{
+    NSString *jsonCode = [NSString stringWithFormat:@"%@()",self.cancelFunction];
+    if ([self.delegate respondsToSelector:@selector(otherDidLoginFaild:)]) {
+        [self.delegate otherDidLoginFaild:jsonCode];
+    }
 }
 
 @end

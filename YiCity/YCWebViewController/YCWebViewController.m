@@ -19,7 +19,8 @@
 #import "WeiboSDK.h"
 #import "WeiboManager.h"
 #import "UIAlertView+Blocks.h"
-@interface YCWebViewController()<UIWebViewDelegate,WKUIDelegate,YCWebNavigationDelegate,UITableViewDataSource, UITableViewDelegate,WKScriptMessageHandler>
+#import "UIButton+AFNetworking.h"
+@interface YCWebViewController()<UIWebViewDelegate,WKUIDelegate,YCWebNavigationDelegate,UITableViewDataSource, UITableViewDelegate,WKScriptMessageHandler,YCThirdLoginDelegate>
 {
     BOOL linkCliked ;
 }
@@ -140,12 +141,17 @@
     [super viewWillAppear:animated];
     if (!_isRoot) {
         UIView *statusView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-        statusView.backgroundColor = [UIColor grayColor] ;
+        statusView.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"] ;
         [self.view addSubview:statusView] ;
-        self.webView.frame = CGRectMake(0, 44, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 44);
+        [self.view addSubview:_progressView];
+        self.webView.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 64);
     }else
     {
-        self.webView.frame = self.view.bounds ;
+        UIView *statusView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
+        statusView.backgroundColor = [UIColor whiteColor] ;
+        [self.view addSubview:statusView] ;
+        [self.view addSubview:_progressView];
+        self.webView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 20) ;
     }
 }
 
@@ -461,7 +467,7 @@
                     _createRButton.iconUrl = iconUrl ;
                     _createRButton.jsFunction = jsUrl ;
                     [self.headerBar addToRightButtons:_createRButton];
-                    [_createRButton setTitle:@"创建" forState:UIControlStateNormal];
+                    [_createRButton setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:iconUrl]];
                     [_createRButton addTarget:self action:@selector(customHtmlAction:) forControlEvents:UIControlEventTouchUpInside];
                     //[_indexdArray addObject:_createRButton];
                     //[self layoutHeaderRight] ;
@@ -509,10 +515,44 @@
                     [self.webView evaluateJavaScript:jsFunction completionHandler:nil] ;
                 }
 
+            }else if ([functionName isEqualToString:@"loginByWechat"])
+            {
+                NSString *cancelFunction = [[json objectForKey:@"parameters"] objectForKey:@"cancelFunction"];
+                NSString *successFunction = [[json objectForKey:@"parameters"] objectForKey:@"successFunction"];
+                [WXShareManager sharedManager].delegate = self ;
+                [WXShareManager sharedManager].cancelFunction = cancelFunction ;
+                [WXShareManager sharedManager].successFunction = successFunction ;
+                [[WXShareManager sharedManager] login];
+            }else if ([functionName isEqualToString:@"loginByQQ"])
+            {
+                NSString *cancelFunction = [[json objectForKey:@"parameters"] objectForKey:@"cancelFunction"];
+                NSString *successFunction = [[json objectForKey:@"parameters"] objectForKey:@"successFunction"];
+                [QQShareManager sharedManager].delegate = self ;
+                [QQShareManager sharedManager].cancelFunction = cancelFunction ;
+                [QQShareManager sharedManager].successFunction = successFunction ;
+                [[QQShareManager sharedManager] login];
+            }else if ([functionName isEqualToString:@"loginByWeibo"])
+            {
+                NSString *cancelFunction = [[json objectForKey:@"parameters"] objectForKey:@"cancelFunction"];
+                NSString *successFunction = [[json objectForKey:@"parameters"] objectForKey:@"successFunction"];
+                [WeiboManager sharedManager].delegate = self ;
+                [WeiboManager sharedManager].cancelFunction = cancelFunction ;
+                [WeiboManager sharedManager].successFunction = successFunction ;
+                [[WeiboManager sharedManager] login];
             }
         }
     }
 }
 
+
+-(void)otherDidLogin:(NSString *)jsCode
+{
+    [self.webView evaluateJavaScript:jsCode completionHandler:nil];
+}
+
+-(void)otherDidLoginFaild:(NSString *)jsCode 
+{
+    [self.webView evaluateJavaScript:jsCode completionHandler:nil];
+}
 
 @end

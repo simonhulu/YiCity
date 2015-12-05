@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
-@interface QQShareManager : NSObject
+#import "YCCommonManager.h"
+@interface QQShareManager : YCCommonManager
 +(QQShareManager *)sharedManager ;
 -(void)registerApp:(NSString *)appID ;
 +(QQBaseReq *)QQNewsReq:(NSString *)htmlUrl htmlTitle:(NSString *)htmlTitle htmlDescription:(NSString *)htmlDescription previewImageUrl:(NSString *)previewImageUrl ;

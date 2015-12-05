@@ -10,6 +10,10 @@
 #import <WebKit/WebKit.h>
 #import "YCWebView.h"
 #import "YCViewController.h"
+@protocol YCThirdLoginDelegate<NSObject>
+-(void)otherDidLogin:(NSString *)jsCode ;
+-(void)otherDidLoginFaild:(NSString *)jsCode ;
+@end
 @interface YCWebViewController : YCViewController
 - (instancetype)initWithAddress:(NSString *)urlString ;
 

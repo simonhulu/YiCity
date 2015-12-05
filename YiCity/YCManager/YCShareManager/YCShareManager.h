@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#define WXAPPID @"wxbb74970568b02ab4"
+#define WEIBOAPPID @"1062189444"
+#define QQAPPID @"1104910915"
 @interface YCShareManager : NSObject
 +(YCShareManager *)sharedManager ;
-+(void)registerApp ;
 +(BOOL)sendReq:(NSObject *)req ;
++(void)registerApp ;
 @end

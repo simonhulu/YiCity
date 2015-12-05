@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "WXApi.h"
-@interface WXShareManager : NSObject<WXApiDelegate>
+#import "YCCommonManager.h"
+@interface WXShareManager : YCCommonManager<WXApiDelegate>
 +(WXShareManager *)sharedManager ;
 -(void)registerApp:(NSString *)appID ;
 +(SendMessageToWXReq *)WXPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description ;
 -(BOOL)sendReq:(SendMessageToWXReq *)req ;
--(void)login;
+-(BOOL)login;
+
 @end

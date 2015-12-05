@@ -11,9 +11,7 @@
 #import "WeiboSDK.h"
 #import "QQShareManager.h"
 #import "WXShareManager.h"
-#define WXAPPID @"wxbb74970568b02ab4"
-#define WEIBOAPPID @"1062189444"
-#define QQAPPID @"1104910915"
+
 @implementation YCShareManager
 static YCShareManager *singleton = nil ;
 +(YCShareManager *)sharedManager

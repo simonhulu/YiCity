@@ -8,6 +8,7 @@
 
 #import "WXShareManager.h"
 #import "WXApi.h"
+#import "YCShareManager.h"
 @implementation WXShareManager
 static WXShareManager *singleton = nil ;
 +(WXShareManager *)sharedManager
@@ -59,11 +60,34 @@ static WXShareManager *singleton = nil ;
     return req ;
 }
 
--(void)login
+-(BOOL)login
 {
-//    [WXApiRequestHandler sendAuthRequestScope: kAuthScope
-//                                        State:kAuthState
-//                                       OpenID:kAuthOpenID
-//                             InViewController:self];
+    SendAuthReq* req = [[SendAuthReq alloc] init] ;
+    req.scope = @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact"; // @"post_timeline,sns"
+    req.state = @"yc";
+    req.openID = WEIBOAPPID;
+    
+    return [WXApi sendReq:req];
+}
+
+-(void)onResp:(BaseResp *)resp
+{
+   if ([resp isKindOfClass:[SendAuthResp class]])
+   {
+       if (resp.errCode != 0) {
+           NSString *jsonCode = [NSString stringWithFormat:@"%@()",self.cancelFunction];
+           if ([self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
+               [self.delegate otherDidLogin:jsonCode];
+           }
+       }else
+       {
+           SendAuthResp *authResp = (SendAuthResp *)resp;
+           NSString *jsonCode = [NSString stringWithFormat:@"%@(%@)",self.successFunction,authResp.code];
+           if ([self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
+               [self.delegate otherDidLogin:jsonCode];
+           }
+       }
+
+   }
 }
 @end
