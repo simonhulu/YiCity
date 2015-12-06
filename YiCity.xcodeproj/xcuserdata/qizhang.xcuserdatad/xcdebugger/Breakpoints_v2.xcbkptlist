@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YiCity/YCWebViewController/YCWebViewController.m"
-            timestampString = "471021375.234094"
+            timestampString = "471082804.940668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "-setLoadingError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -96,22 +96,6 @@
             startingLineNumber = "106"
             endingLineNumber = "106"
             landmarkName = "-touchesBegan:withEvent:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YiCity/YCManager/YCShareManager/WXShareManager.m"
-            timestampString = "471018837.15856"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-onResp:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -176,6 +160,22 @@
             startingLineNumber = "36"
             endingLineNumber = "36"
             landmarkName = "-request:didFinishLoadingWithResult:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YiCity/YCWebViewController/YCWebViewController.m"
+            timestampString = "471082804.940668"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "557"
+            endingLineNumber = "557"
+            landmarkName = "-otherDidLogin:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

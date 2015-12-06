@@ -75,11 +75,17 @@ static WeiboManager *singleton = nil ;
     WBWebpageObject *webpage = [WBWebpageObject object];
     webpage.objectID = @"identifier1";
     webpage.title = NSLocalizedString(title, nil);
-    webpage.description = [NSString stringWithFormat:NSLocalizedString(@"%@", nil),description];
+    webpage.description = [NSString stringWithFormat:NSLocalizedString(@"'%@'", nil),description];
     webpage.thumbnailData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"yicityLogo" ofType:@"jpg"]];
     webpage.webpageUrl = htmlUrl;
     message.mediaObject = webpage;
     WBSendMessageToWeiboRequest *req = [WBSendMessageToWeiboRequest requestWithMessage:message] ;
     return req ;
 }
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response;
+{
+    
+}
+
 @end

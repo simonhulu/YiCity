@@ -75,14 +75,14 @@ static WXShareManager *singleton = nil ;
    if ([resp isKindOfClass:[SendAuthResp class]])
    {
        if (resp.errCode != 0) {
-           NSString *jsonCode = [NSString stringWithFormat:@"%@()",self.cancelFunction];
+           NSString *jsonCode = [NSString stringWithFormat:@"%@();",self.cancelFunction];
            if ([self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
                [self.delegate otherDidLogin:jsonCode];
            }
        }else
        {
            SendAuthResp *authResp = (SendAuthResp *)resp;
-           NSString *jsonCode = [NSString stringWithFormat:@"%@(%@)",self.successFunction,authResp.code];
+           NSString *jsonCode = [NSString stringWithFormat:@"%@('%@');",self.successFunction,authResp.code];
            if ([self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
                [self.delegate otherDidLogin:jsonCode];
            }

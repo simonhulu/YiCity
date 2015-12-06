@@ -11,6 +11,7 @@
 {
     UILabel *_titleLabel ;
     NSMutableArray *_rightButtons ;
+    CALayer *bottomLayer ;
 }
 @end
 @implementation YCHeaderBar
@@ -23,6 +24,8 @@
     return self ;
 }
 
+
+
 -(void)initila
 {
     _rightButtons = [NSMutableArray arrayWithCapacity:4];
@@ -30,12 +33,17 @@
     _titleLabel.textAlignment = NSTextAlignmentCenter ;
     _leftButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
     _leftButton.frame = CGRectMake(0, 0, 45, 45);
+    bottomLayer = [CALayer layer];
+    bottomLayer.backgroundColor =  [UIColor colorWithRed:0.706f green:0.706f blue:0.706f alpha:1.0f].CGColor;
+    //bottomLayer.borderWidth = 1;
+    bottomLayer.frame = CGRectMake(0,CGRectGetHeight(self.frame)-1, CGRectGetWidth(self.frame), 1);
     //_rightButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
     //_rightButton.frame = CGRectMake(CGRectGetWidth(self.frame)-45, 0, 45, 45) ;
     [_leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     //[_rightButton setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
     [self addSubview:_titleLabel ];
     [self addSubview:_leftButton];
+        [self.layer addSublayer:bottomLayer];
     //[self addSubview:_rightButton];
 }
 
@@ -87,6 +95,7 @@
 {
     [super setFrame:frame] ;
     _titleLabel.frame = frame ;
+
 }
 
 -(void)setTitle:(NSString *)title

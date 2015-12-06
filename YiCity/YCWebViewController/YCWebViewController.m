@@ -139,6 +139,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
     if (!_isRoot) {
         UIView *statusView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
         statusView.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"] ;
@@ -153,6 +154,7 @@
         [self.view addSubview:_progressView];
         self.webView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 20) ;
     }
+
 }
 
 -(void)showShareView:(id)sender
@@ -362,6 +364,7 @@
 
 - (void)webView:(YCWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
+
 }
 
 - (void)webView:(YCWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
@@ -393,7 +396,8 @@
 -(void)customHtmlAction:(id)sender
 {
     YCHTMLButton *button = (YCHTMLButton *)sender ;
-    [self.webView evaluateJavaScript:button.jsFunction completionHandler:^(id result, NSError *error) {
+    NSString *jsoncode = [NSString stringWithFormat:@"%@('%@');",button.jsFunction,button.buttonId] ;
+    [self.webView evaluateJavaScript:jsoncode completionHandler:^(id result, NSError *error) {
         
     }];
 }
@@ -443,7 +447,6 @@
     if ([message.name isEqualToString:@"observe"]) {
         // Log out the message received
         NSLog(@"Received event %@", message.body);
-        NSError *jsonError;
 //        NSString *jsonStr = message.body ;
 //        NSData *objectData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
 //        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
@@ -468,6 +471,7 @@
                     _createRButton.jsFunction = jsUrl ;
                     [self.headerBar addToRightButtons:_createRButton];
                     [_createRButton setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:iconUrl]];
+                    [_createRButton setTitleColor:[UIColor colorWithHexString:@"#FD5E0F"] forState:UIControlStateNormal];
                     [_createRButton addTarget:self action:@selector(customHtmlAction:) forControlEvents:UIControlEventTouchUpInside];
                     //[_indexdArray addObject:_createRButton];
                     //[self layoutHeaderRight] ;
@@ -512,6 +516,7 @@
                 [self.headerBar setTitle:title];
                 NSString *jsFunction = [[json objectForKey:@"parameters"] objectForKey:@"jsFunction"];
                 if (jsFunction) {
+                    jsFunction = [NSString stringWithFormat:@"%@();",jsFunction] ;
                     [self.webView evaluateJavaScript:jsFunction completionHandler:nil] ;
                 }
 
@@ -534,7 +539,9 @@
             }else if ([functionName isEqualToString:@"loginByWeibo"])
             {
                 NSString *cancelFunction = [[json objectForKey:@"parameters"] objectForKey:@"cancelFunction"];
+                
                 NSString *successFunction = [[json objectForKey:@"parameters"] objectForKey:@"successFunction"];
+                
                 [WeiboManager sharedManager].delegate = self ;
                 [WeiboManager sharedManager].cancelFunction = cancelFunction ;
                 [WeiboManager sharedManager].successFunction = successFunction ;
@@ -553,6 +560,19 @@
 -(void)otherDidLoginFaild:(NSString *)jsCode 
 {
     [self.webView evaluateJavaScript:jsCode completionHandler:nil];
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)())completionHandler
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                          completionHandler();
+                                                      }]];
+    [self presentViewController:alertController animated:YES completion:^{}];
 }
 
 @end

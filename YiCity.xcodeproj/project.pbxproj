@@ -97,6 +97,8 @@
 		6DAD00421C13352100EAFE59 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD002F1C13352000EAFE59 /* UIProgressView+AFNetworking.m */; };
 		6DAD00431C13352100EAFE59 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD00311C13352000EAFE59 /* UIRefreshControl+AFNetworking.m */; };
 		6DAD00441C13352100EAFE59 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD00331C13352000EAFE59 /* UIWebView+AFNetworking.m */; };
+		6DAD004B1C1424D400EAFE59 /* launchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAD00491C1424D400EAFE59 /* launchImage@2x.png */; };
+		6DAD004C1C1424D400EAFE59 /* launchImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAD004A1C1424D400EAFE59 /* launchImage@3x.png */; };
 		6DADFFA11C13299C00EAFE59 /* YCCommonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DADFFA01C13299C00EAFE59 /* YCCommonManager.m */; };
 /* End PBXBuildFile section */
 
@@ -270,6 +272,8 @@
 		6DAD00311C13352000EAFE59 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		6DAD00321C13352000EAFE59 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		6DAD00331C13352000EAFE59 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		6DAD00491C1424D400EAFE59 /* launchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@2x.png"; sourceTree = "<group>"; };
+		6DAD004A1C1424D400EAFE59 /* launchImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@3x.png"; sourceTree = "<group>"; };
 		6DADFF9F1C13299C00EAFE59 /* YCCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCCommonManager.h; sourceTree = "<group>"; };
 		6DADFFA01C13299C00EAFE59 /* YCCommonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCCommonManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -423,6 +427,8 @@
 		6D76FB961C018CF200AF2327 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				6DAD00491C1424D400EAFE59 /* launchImage@2x.png */,
+				6DAD004A1C1424D400EAFE59 /* launchImage@3x.png */,
 				6D54B48E1C0C83870068F5AE /* yicityLogo.png */,
 				6D76FF541C095CDA00AF2327 /* share */,
 				6D76FBCA1C01AD8000AF2327 /* user@2x.png */,
@@ -739,11 +745,13 @@
 				6D76FEDD1C09559D00AF2327 /* read_me.txt in Resources */,
 				6D54B4931C0C853A0068F5AE /* weiboLogo.png in Resources */,
 				6D54B48F1C0C83870068F5AE /* yicityLogo.png in Resources */,
+				6DAD004C1C1424D400EAFE59 /* launchImage@3x.png in Resources */,
 				6D54B4871C09A3CC0068F5AE /* wxShareIcon@3x.png in Resources */,
 				6D469EBD1C0F3D3100CE74CC /* UIAlertView-Blocks.podspec in Resources */,
 				6D76FB9A1C018D3A00AF2327 /* refresh@2x.png in Resources */,
 				6D76FEDB1C09559D00AF2327 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				6D54B4951C0C853A0068F5AE /* weiboLogo@3x.png in Resources */,
+				6DAD004B1C1424D400EAFE59 /* launchImage@2x.png in Resources */,
 				6D76FBC71C01AD7500AF2327 /* Home@3x.png in Resources */,
 				6D54B47C1C0999A70068F5AE /* qqShareIcon.png in Resources */,
 				6D54B4851C09A3CC0068F5AE /* wxShareIcon.png in Resources */,
@@ -940,7 +948,8 @@
 		6D76FB7F1C0016D300AF2327 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -964,7 +973,8 @@
 		6D76FB801C0016D300AF2327 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
