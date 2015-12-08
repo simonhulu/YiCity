@@ -38,6 +38,8 @@
 @property(nonatomic,strong) UIButton *callButton ;
 @property(nonatomic,strong) NSMutableArray *indexdArray ;
 @property(nonatomic,strong) NSString *jsUrl ;
+@property(nonatomic,strong) UISwipeGestureRecognizer *leftSwipGesture ;
+@property(nonatomic,strong) UISwipeGestureRecognizer *rightSwipGesture ;
 @end
 @implementation YCWebViewController
 
@@ -95,6 +97,8 @@
     self.webView.UIDelegate = self ;
     self.webView.navDelegate = self ;
     self.webView.scrollView.delegate = self ;
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0,0);
+    self.webView.scrollView.contentInset = insets;
     self.headerBar.hidden = YES ;
     self.showBackButton = NO ;
     _isRoot = YES ;
@@ -133,7 +137,26 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated] ;
+    if (!_leftSwipGesture) {
+        _leftSwipGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipeAction:)];
+        _leftSwipGesture.direction = (UISwipeGestureRecognizerDirectionLeft );
+        [self.view addGestureRecognizer:_leftSwipGesture];
+    }
+    if (!_rightSwipGesture) {
+        _rightSwipGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipeAction:)];
+        _rightSwipGesture.direction = (UISwipeGestureRecognizerDirectionRight );
+        [self.view addGestureRecognizer:_rightSwipGesture];
+    }
+}
 
+-(void)leftSwipeAction:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    [self.webView evaluateJavaScript:@"slideToLeft();" completionHandler:nil];
+}
+
+-(void)rightSwipeAction:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    [self.webView evaluateJavaScript:@"slideToRight();" completionHandler:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -152,9 +175,8 @@
         statusView.backgroundColor = [UIColor whiteColor] ;
         [self.view addSubview:statusView] ;
         [self.view addSubview:_progressView];
-        self.webView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 20) ;
+        self.webView.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 20) ;
     }
-
 }
 
 -(void)showShareView:(id)sender
@@ -573,6 +595,20 @@
                                                           completionHandler();
                                                       }]];
     [self presentViewController:alertController animated:YES completion:^{}];
+}
+
+#pragma mark - UIScrollViewDelegate
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    //pull
+    NSLog(@"%f",scrollView.contentOffset.y);
+    if ( scrollView.contentOffset.y < -65) {
+        [self.webView evaluateJavaScript:@"pullDown();" completionHandler:nil] ;
+    }else if (scrollView.contentOffset.y > 80 )
+    {
+        // load more
+        [self.webView evaluateJavaScript:@"pushUp();" completionHandler:nil];
+    }
 }
 
 @end

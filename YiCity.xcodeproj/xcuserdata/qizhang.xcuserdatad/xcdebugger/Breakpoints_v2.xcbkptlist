@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YiCity/YCWebViewController/YCWebViewController.m"
-            timestampString = "471082804.940668"
+            timestampString = "471274223.610026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "-setLoadingError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YiCity/YCWebViewController/YCWebViewController.m"
-            timestampString = "471082804.940668"
+            timestampString = "471274223.610026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "557"
-            endingLineNumber = "557"
+            startingLineNumber = "580"
+            endingLineNumber = "580"
             landmarkName = "-otherDidLogin:"
             landmarkType = "5">
          </BreakpointContent>

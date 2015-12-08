@@ -64,6 +64,7 @@
     [tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithHexString:@"#FD5E0F"]] ;
     YCNavigationController *navController = [[YCNavigationController alloc]initWithRootViewController:tabBarController];
     navController.navigationBarHidden = YES ;
+    navController.interactivePopGestureRecognizer.enabled = NO ;
     self.window.rootViewController = navController ;
     [self.window makeKeyAndVisible];
     return YES;
