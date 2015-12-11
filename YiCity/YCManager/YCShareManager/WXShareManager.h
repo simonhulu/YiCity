@@ -12,7 +12,7 @@
 @interface WXShareManager : YCCommonManager<WXApiDelegate>
 +(WXShareManager *)sharedManager ;
 -(void)registerApp:(NSString *)appID ;
-+(SendMessageToWXReq *)WXPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description ;
++(SendMessageToWXReq *)WXPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description thumbImag:(UIImage *)thumbImag ;
 -(BOOL)sendReq:(SendMessageToWXReq *)req ;
 -(BOOL)login;
 

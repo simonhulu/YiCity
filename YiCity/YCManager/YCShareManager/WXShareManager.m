@@ -40,7 +40,7 @@ static WXShareManager *singleton = nil ;
   return   [WXApi sendReq:req] ;
 }
 
-+(SendMessageToWXReq *)WXPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description
++(SendMessageToWXReq *)WXPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description thumbImag:(UIImage *)thumbImag
 {
     WXWebpageObject *ext = [WXWebpageObject object];
     ext.webpageUrl = htmlUrl;
@@ -52,7 +52,7 @@ static WXShareManager *singleton = nil ;
     message.messageExt = nil;
     message.messageAction = nil;
     message.mediaTagName = @" ";
-    [message setThumbImage:[UIImage imageNamed:@"yicityLogo"]];
+    [message setThumbImage:thumbImag];
     
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init] ;
     req.scene = WXSceneTimeline;

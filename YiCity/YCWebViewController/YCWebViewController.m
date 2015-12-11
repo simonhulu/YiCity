@@ -20,6 +20,8 @@
 #import "WeiboManager.h"
 #import "UIAlertView+Blocks.h"
 #import "UIButton+AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
+#import "AFNetworking.h"
 @interface YCWebViewController()<UIWebViewDelegate,WKUIDelegate,YCWebNavigationDelegate,UITableViewDataSource, UITableViewDelegate,WKScriptMessageHandler,YCThirdLoginDelegate>
 {
     BOOL linkCliked ;
@@ -255,16 +257,44 @@
 
 -(void)weiboShare:(id)sender
 {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[YCShareManager sharedManager].shareIconUrl]] ;
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        UIImage *image = [UIImage imageWithData:responseObject] ;
+        NSData *thumbData = UIImageJPEGRepresentation(image, 1.0);
+        
         NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
-    WBBaseRequest *req = [WeiboManager WeiboPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle description:[YCShareManager sharedManager].shareDescription];
-    [[WeiboManager sharedManager] sendReq:req];
+        WBBaseRequest *req = [WeiboManager WeiboPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle description:[YCShareManager sharedManager].shareDescription thumbnailData:thumbData];
+        [[WeiboManager sharedManager] sendReq:req];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+        WBBaseRequest *req = [WeiboManager WeiboPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle description:[YCShareManager sharedManager].shareDescription thumbnailData:nil];
+        [[WeiboManager sharedManager] sendReq:req];
+    }];
+    [requestOperation start];
 }
 
 -(void)wxShare:(id)sender
 {
-    NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
-    SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription];
-    [YCShareManager sendReq:req];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[YCShareManager sharedManager].shareIconUrl]] ;
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+        UIImage *image = [UIImage imageWithData:responseObject];
+        NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+        SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription thumbImag:image];
+        [YCShareManager sendReq:req];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Image error: %@", error); NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+        SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription thumbImag:nil];
+        [YCShareManager sendReq:req];
+    }];
+    [requestOperation start];
+
 }
 
 -(void)leftButtonClick
@@ -514,7 +544,7 @@
                 
             }else if ([functionName isEqualToString:@"createShareButton"])
             {
-                if (!_shareBtn) {
+                //if (!_shareBtn) {
                     NSDictionary *parameters = [json objectForKey:@"parameters"];
                     if (parameters) {
                         NSString *shareDescription = [parameters objectForKey:@"description"] ;
@@ -534,7 +564,7 @@
                     //_shareBtn.frame = CGRectMake(CGRectGetWidth(self.view.frame) - 45, 0, 45, 45) ;
                     //[_indexdArray addObject:_shareBtn];
                     //[self layoutHeaderRight] ;
-                }
+                //}
                 
             }else if ([functionName isEqualToString:@"createCallButton"])
             {

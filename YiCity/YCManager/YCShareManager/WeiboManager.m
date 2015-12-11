@@ -69,14 +69,14 @@ static WeiboManager *singleton = nil ;
     return   [WeiboSDK sendRequest:req] ;
 }
 
-+(WBBaseRequest *)WeiboPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description
++(WBBaseRequest *)WeiboPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description thumbnailData:(NSData *)thumbnailData ;
 {
     WBMessageObject *message = [WBMessageObject message];
     WBWebpageObject *webpage = [WBWebpageObject object];
     webpage.objectID = @"identifier1";
     webpage.title = NSLocalizedString(title, nil);
     webpage.description = [NSString stringWithFormat:NSLocalizedString(@"'%@'", nil),description];
-    webpage.thumbnailData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"yicityLogo" ofType:@"jpg"]];
+    webpage.thumbnailData = thumbnailData;
     webpage.webpageUrl = htmlUrl;
     message.mediaObject = webpage;
     WBSendMessageToWeiboRequest *req = [WBSendMessageToWeiboRequest requestWithMessage:message] ;

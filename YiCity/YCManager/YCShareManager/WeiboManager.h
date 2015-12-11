@@ -12,7 +12,7 @@
 @interface WeiboManager : YCCommonManager<WeiboSDKDelegate>
 +(WeiboManager *)sharedManager ;
 -(void)registerApp:(NSString *)appID ;
-+(WBBaseRequest *)WeiboPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description ;
++(WBBaseRequest *)WeiboPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description thumbnailData:(NSData *)thumbnailData ;
 -(BOOL)sendReq:(WBBaseRequest *)req ;
 -(void)login ;
 @end
