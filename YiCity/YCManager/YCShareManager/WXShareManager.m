@@ -76,7 +76,7 @@ static WXShareManager *singleton = nil ;
    {
        if (resp.errCode != 0) {
            NSString *jsonCode = [NSString stringWithFormat:@"%@();",self.cancelFunction];
-           if ([self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
+           if ([self.delegate respondsToSelector:@selector(otherDidLoginFaild:)]) {
                [self.delegate otherDidLogin:jsonCode];
            }
        }else

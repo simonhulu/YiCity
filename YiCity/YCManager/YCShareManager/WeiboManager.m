@@ -51,7 +51,7 @@ static WeiboManager *singleton = nil ;
 -(void)login
 {
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-    request.redirectURI = @"http://www.yicity.com/";
+    request.redirectURI = @"http://yicity.com/api/weibo/authorize";
     request.scope = @"all";
     request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
                          @"Other_Info_1": [NSNumber numberWithInt:123],
@@ -85,7 +85,25 @@ static WeiboManager *singleton = nil ;
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response;
 {
-    
+    if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+        if ([response isKindOfClass:[WBAuthorizeResponse class]]) {
+            WBAuthorizeResponse *authResponse = (WBAuthorizeResponse *)response ;
+                    NSString *jsonCode = [NSString stringWithFormat:@"%@('%@');",self.successFunction,authResponse.userID] ;
+            if ([self.delegate respondsToSelector:@selector(otherDidLogin:)]) {
+                [self.delegate otherDidLogin:jsonCode];
+            }
+        }
+
+    }else{
+        if ([response isKindOfClass:[WBAuthorizeResponse class]]) {
+                    NSString *jsonCode = [NSString stringWithFormat:@"%@();",self.cancelFunction];
+                    if ([self.delegate respondsToSelector:@selector(otherDidLoginFaild:)]) {
+                        [self.delegate otherDidLogin:jsonCode];
+                    }
+        }
+
+
+    }
 }
 
 @end
