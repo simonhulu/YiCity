@@ -81,6 +81,17 @@
     [self layoutHeaderRight] ;
 }
 
+-(void)clearRightBtns
+{
+    if (_rightButtons) {
+        for (UIButton *btn in _rightButtons) {
+            if (btn && [btn isKindOfClass:[UIButton class]]) {
+                [btn removeFromSuperview];
+            }
+        }
+    }
+}
+
 -(void)layoutHeaderRight
 {
     NSInteger addedButton = 0 ;

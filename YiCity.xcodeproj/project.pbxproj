@@ -100,6 +100,8 @@
 		6DAD004B1C1424D400EAFE59 /* launchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAD00491C1424D400EAFE59 /* launchImage@2x.png */; };
 		6DAD004C1C1424D400EAFE59 /* launchImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAD004A1C1424D400EAFE59 /* launchImage@3x.png */; };
 		6DADFFA11C13299C00EAFE59 /* YCCommonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DADFFA01C13299C00EAFE59 /* YCCommonManager.m */; };
+		F1BFCE101C1A6D3400F44805 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1BFCE0E1C1A6D3400F44805 /* icon@2x.png */; };
+		F1BFCE111C1A6D3400F44805 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1BFCE0F1C1A6D3400F44805 /* icon@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -276,6 +278,8 @@
 		6DAD004A1C1424D400EAFE59 /* launchImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@3x.png"; sourceTree = "<group>"; };
 		6DADFF9F1C13299C00EAFE59 /* YCCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCCommonManager.h; sourceTree = "<group>"; };
 		6DADFFA01C13299C00EAFE59 /* YCCommonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCCommonManager.m; sourceTree = "<group>"; };
+		F1BFCE0E1C1A6D3400F44805 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		F1BFCE0F1C1A6D3400F44805 /* icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +431,8 @@
 		6D76FB961C018CF200AF2327 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				F1BFCE0E1C1A6D3400F44805 /* icon@2x.png */,
+				F1BFCE0F1C1A6D3400F44805 /* icon@3x.png */,
 				6DAD00491C1424D400EAFE59 /* launchImage@2x.png */,
 				6DAD004A1C1424D400EAFE59 /* launchImage@3x.png */,
 				6D54B48E1C0C83870068F5AE /* yicityLogo.png */,
@@ -703,7 +709,7 @@
 				TargetAttributes = {
 					6D76FB5A1C0016D300AF2327 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = B7AS9YWT7E;
+						DevelopmentTeam = 297SS7EN9H;
 					};
 					6D76FB731C0016D300AF2327 = {
 						CreatedOnToolsVersion = 6.2;
@@ -740,6 +746,7 @@
 				6D54B4941C0C853A0068F5AE /* weiboLogo@2x.png in Resources */,
 				6D76FB6F1C0016D300AF2327 /* LaunchScreen.xib in Resources */,
 				6D54B4861C09A3CC0068F5AE /* wxShareIcon@2x.png in Resources */,
+				F1BFCE101C1A6D3400F44805 /* icon@2x.png in Resources */,
 				6D76FBC41C01AD7500AF2327 /* create@2x.png in Resources */,
 				6D76FB6C1C0016D300AF2327 /* Images.xcassets in Resources */,
 				6D76FEDD1C09559D00AF2327 /* read_me.txt in Resources */,
@@ -758,6 +765,7 @@
 				6D76FB991C018D3A00AF2327 /* back@2x.png in Resources */,
 				6D76FBC21C01AD7500AF2327 /* category@2x.png in Resources */,
 				6D76FBC31C01AD7500AF2327 /* category@3x.png in Resources */,
+				F1BFCE111C1A6D3400F44805 /* icon@3x.png in Resources */,
 				6D54B47D1C0999A70068F5AE /* qqShareIcon@2x.png in Resources */,
 				6D76FBCC1C01AD8000AF2327 /* user@2x.png in Resources */,
 				6D76FBC91C01AD7500AF2327 /* MoreInfo@3x.png in Resources */,

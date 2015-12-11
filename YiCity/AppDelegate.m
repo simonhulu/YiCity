@@ -45,7 +45,7 @@
         
     }];
     YCTabBarController *tabBarController = [[YCTabBarController alloc]init];
-    YCWebViewController *index = [[YCWebViewController alloc]initWithAddress:@"http://demo.yicity.com/t.jsp"];
+    YCWebViewController *index = [[YCWebViewController alloc]initWithAddress:@"http://demo.yicity.com"];
     UITabBarItem *indexBarItem = [[UITabBarItem alloc]initWithTitle:@"首页" image:[UIImage imageNamed:@"Home"] tag:0];
     index.tabBarItem = indexBarItem ;
     YCWebViewController *category = [[YCWebViewController alloc]initWithAddress:@"http://demo.yicity.com/app/category.html"];
@@ -105,6 +105,11 @@
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [WXApi handleOpenURL:url delegate:[WXShareManager sharedManager]] || [TencentOAuth HandleOpenURL:url] || [WeiboSDK handleOpenURL:url delegate:[WeiboManager sharedManager]] ;
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

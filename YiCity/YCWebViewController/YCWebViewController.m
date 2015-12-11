@@ -175,7 +175,7 @@
         statusView.backgroundColor = [UIColor whiteColor] ;
         [self.view addSubview:statusView] ;
         [self.view addSubview:_progressView];
-        self.webView.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 20) ;
+        self.webView.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 64) ;
     }
 }
 
@@ -206,36 +206,37 @@
 -(void)showShare;
 {
     if (!_sharePanel) {
-        _sharePanel  = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame), CGRectGetWidth(self.view.frame), 300)];
+        _sharePanel  = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame), CGRectGetWidth(self.view.frame), 150)];
         _qqButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_qqButton setImage:[UIImage imageNamed:@"qqShareIcon"] forState:UIControlStateNormal];
-        _qqButton.frame = CGRectMake(90, 100, 45, 45);
+        _qqButton.frame = CGRectMake(75, 40, 45, 45);
         [_sharePanel addSubview:_qqButton];
         [_qqButton addTarget:self action:@selector(qqShare:) forControlEvents:UIControlEventTouchUpInside];
         
         _wxButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_wxButton setImage:[UIImage imageNamed:@"wxShareIcon"] forState:UIControlStateNormal];
-        _wxButton.frame = CGRectMake(160, 100, 45, 45);
+        _wxButton.frame = CGRectMake(145, 40, 45, 45);
         [_sharePanel addSubview:_wxButton];
         [_wxButton addTarget:self action:@selector(wxShare:) forControlEvents:UIControlEventTouchUpInside];
         
         
         _weiboButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_weiboButton setImage:[UIImage imageNamed:@"weiboLogo"] forState:UIControlStateNormal];
-        _weiboButton.frame = CGRectMake(230, 100, 45, 45);
+        _weiboButton.frame = CGRectMake(215, 40, 45, 45);
         [_sharePanel addSubview:_weiboButton];
         [_weiboButton addTarget:self action:@selector(weiboShare:) forControlEvents:UIControlEventTouchUpInside];
         _sharePanelBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(_sharePanel.frame)-44, CGRectGetWidth(_sharePanel.frame), 44)];
         _sharePanelBackBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_sharePanelBackBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_sharePanelBackBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [_sharePanelBackBtn setTitle:@"返回" forState:UIControlStateNormal];
+        _sharePanelBackBtn.titleLabel.font = [UIFont systemFontOfSize:21];
         [_sharePanelBackBtn addTarget:self action:@selector(shareBack:) forControlEvents:UIControlEventTouchUpInside];
         [_sharePanel addSubview:_sharePanelBackBtn];
     }
     _sharePanel.backgroundColor = [UIColor whiteColor] ;
     [_shareView addSubview:_sharePanel];
     [UIView animateWithDuration:0.3f animations:^{
-        _sharePanel.frame = CGRectMake(0, CGRectGetHeight(self.view.frame) - 300 , CGRectGetWidth(self.view.frame), 300) ;
+        _sharePanel.frame = CGRectMake(0, CGRectGetHeight(self.view.frame) - 150 , CGRectGetWidth(self.view.frame), 150) ;
     } completion:^(BOOL finished) {
         
     }];
@@ -404,6 +405,7 @@
 {
     NSLog(@"isMainFrame======%d",navigationAction.targetFrame.isMainFrame);
     if (navigationAction.targetFrame.isMainFrame) {
+
         return self.webView ;
     }else
     {
@@ -437,7 +439,18 @@
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
 
-
+    NSURL *url = navigationAction.request.URL ;
+    if ([url.scheme isEqualToString:@"tel"]) {
+        [[UIApplication sharedApplication] openURL:url];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }else
+    {
+        if (navigationAction.targetFrame.isMainFrame == 1) {
+            //current Page
+            [self.headerBar clearRightBtns];
+        }
+    }
 
     decisionHandler(WKNavigationActionPolicyAllow);
 }

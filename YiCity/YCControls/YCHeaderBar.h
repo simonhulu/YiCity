@@ -13,6 +13,7 @@
 @property(nonatomic,strong)UIButton *rightButton ;
 @property(nonatomic,strong)NSString *title ;
 -(void)addToRightButtons:(UIButton *)btn ;
+-(void)clearRightBtns ;
 @end
 @protocol YCHeaderBarOperation <NSObject>
 -(void)leftButtonClick ;
