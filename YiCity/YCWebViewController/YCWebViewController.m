@@ -248,22 +248,22 @@
 }
 -(void)qqShare:(id)sender
 {
-    NSString *htmlUrl = self.webView.URL.absoluteString ;
-    QQBaseReq *req =  [QQShareManager QQNewsReq:htmlUrl htmlTitle:self.webView.title htmlDescription:@"测试用" previewImageUrl:@"http://yicity.com/imgs/logo-300x300.png"] ;
+    NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+    QQBaseReq *req =  [QQShareManager QQNewsReq:htmlUrl htmlTitle:[YCShareManager sharedManager].shareTitle htmlDescription:[YCShareManager sharedManager].shareDescription previewImageUrl:[YCShareManager sharedManager].shareIconUrl] ;
     [YCShareManager sendReq:req];
 }
 
 -(void)weiboShare:(id)sender
 {
-        NSString *htmlUrl = self.webView.URL.absoluteString ;
-    WBBaseRequest *req = [WeiboManager WeiboPageReq:htmlUrl title:self.webView.title description:@"测试用"];
+        NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+    WBBaseRequest *req = [WeiboManager WeiboPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle description:[YCShareManager sharedManager].shareDescription];
     [[WeiboManager sharedManager] sendReq:req];
 }
 
 -(void)wxShare:(id)sender
 {
-    NSString *htmlUrl = self.webView.URL.absoluteString ;
-    SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:self.webView.title  description:@"测试用"];
+    NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+    SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription];
     [YCShareManager sendReq:req];
 }
 
@@ -515,6 +515,17 @@
             }else if ([functionName isEqualToString:@"createShareButton"])
             {
                 if (!_shareBtn) {
+                    NSDictionary *parameters = [json objectForKey:@"parameters"];
+                    if (parameters) {
+                        NSString *shareDescription = [parameters objectForKey:@"description"] ;
+                        NSString *shareIconUrl = [parameters objectForKey:@"iconUrl"] ;
+                        NSString *shareTitle = [parameters objectForKey:@"title"] ;
+                        NSString *url = [parameters objectForKey:@"url"] ;
+                        [YCShareManager sharedManager].shareDescription = shareDescription ;
+                        [YCShareManager sharedManager].shareIconUrl = shareIconUrl ;
+                        [YCShareManager sharedManager].shareTitle = shareTitle ;
+                        [YCShareManager sharedManager].shareRedirectURL = url ;
+                    }
                     _shareBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 45, 45)] ;
 
                     [_shareBtn setImage:[UIImage imageNamed:@"shareIcon"] forState:UIControlStateNormal];

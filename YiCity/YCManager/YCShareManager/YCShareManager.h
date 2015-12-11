@@ -14,4 +14,9 @@
 +(YCShareManager *)sharedManager ;
 +(BOOL)sendReq:(NSObject *)req ;
 +(void)registerApp ;
+
+@property(nonatomic,strong)NSString *shareDescription ;
+@property(nonatomic,strong)NSString *shareIconUrl ;
+@property(nonatomic,strong)NSString *shareTitle ;
+@property(nonatomic,strong)NSString *shareRedirectURL ;
 @end
