@@ -10,9 +10,14 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "YCCommonManager.h"
+typedef NS_ENUM(NSInteger, QQScene)
+{
+  QQ,
+  QZONE
+};
 @interface QQShareManager : YCCommonManager
 +(QQShareManager *)sharedManager ;
 -(void)registerApp:(NSString *)appID ;
 +(QQBaseReq *)QQNewsReq:(NSString *)htmlUrl htmlTitle:(NSString *)htmlTitle htmlDescription:(NSString *)htmlDescription previewImageUrl:(NSString *)previewImageUrl ;
--(BOOL)sendReq:(QQBaseReq *)req ;
+-(BOOL)sendReq:(QQBaseReq *)req scene:(QQScene)scene ;
 @end

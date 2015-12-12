@@ -9,6 +9,7 @@
 #import "WXShareManager.h"
 #import "WXApi.h"
 #import "YCShareManager.h"
+#import "WXApiObject.h"
 @implementation WXShareManager
 static WXShareManager *singleton = nil ;
 +(WXShareManager *)sharedManager
@@ -40,7 +41,7 @@ static WXShareManager *singleton = nil ;
   return   [WXApi sendReq:req] ;
 }
 
-+(SendMessageToWXReq *)WXPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description thumbImag:(UIImage *)thumbImag
++(SendMessageToWXReq *)WXPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description thumbImag:(UIImage *)thumbImag scene:(WeiXinScene)scene
 {
     WXWebpageObject *ext = [WXWebpageObject object];
     ext.webpageUrl = htmlUrl;
@@ -55,7 +56,13 @@ static WXShareManager *singleton = nil ;
     [message setThumbImage:thumbImag];
     
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init] ;
-    req.scene = WXSceneTimeline;
+    if (scene == WeiXin) {
+        req.scene = WXSceneSession;
+    }else
+    {
+        req.scene = WXSceneTimeline;
+    }
+
     req.message = message;
     return req ;
 }

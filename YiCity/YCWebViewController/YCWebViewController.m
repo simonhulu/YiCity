@@ -22,6 +22,7 @@
 #import "UIButton+AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
+#import "YCShareVIew.h"
 @interface YCWebViewController()<UIWebViewDelegate,WKUIDelegate,YCWebNavigationDelegate,UITableViewDataSource, UITableViewDelegate,WKScriptMessageHandler,YCThirdLoginDelegate>
 {
     BOOL linkCliked ;
@@ -48,11 +49,11 @@
 #pragma mark - Initialization
 -(void)dealloc
 {
-    [self.webView stopLoading] ;
+    //[self.webView stopLoading] ;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    self.delegate = nil ;
-    self.webView.navDelegate = nil ;
-    self.webView.UIDelegate = nil ;
+    //self.delegate = nil ;
+    //self.webView.navDelegate = nil ;
+    //self.webView.UIDelegate = nil ;
     [_shareBtn removeTarget:self action:@selector(showShareView:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -102,6 +103,7 @@
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0,0);
     self.webView.scrollView.contentInset = insets;
     self.headerBar.hidden = YES ;
+    self.headerBar.delegate = self ;
     self.showBackButton = NO ;
     _isRoot = YES ;
     _indexdArray = [NSMutableArray array] ;
@@ -135,6 +137,8 @@
     }
     
 }
+
+
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -208,25 +212,46 @@
 -(void)showShare;
 {
     if (!_sharePanel) {
+        CGFloat btnSpace = 3.0f ;
         _sharePanel  = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame), CGRectGetWidth(self.view.frame), 150)];
         _qqButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_qqButton setImage:[UIImage imageNamed:@"qqShareIcon"] forState:UIControlStateNormal];
-        _qqButton.frame = CGRectMake(75, 40, 45, 45);
-        [_sharePanel addSubview:_qqButton];
         [_qqButton addTarget:self action:@selector(qqShare:) forControlEvents:UIControlEventTouchUpInside];
+        YCShareView *qqShareView = [[YCShareView alloc]initWithShareStyle:_qqButton name:@"QQ好友"];
+        qqShareView.frame = CGRectMake(0, 40, 45, 45);
+        [_sharePanel addSubview:qqShareView];
+        
+        UIButton *qzoneBtn = [UIButton buttonWithType:UIButtonTypeCustom] ;
+        [qzoneBtn setImage:[UIImage imageNamed:@"qZone"] forState:UIControlStateNormal];
+        [qzoneBtn addTarget:self action:@selector(qqZoneShare:) forControlEvents:UIControlEventTouchUpInside];
+        YCShareView *qqZoneShareView = [[YCShareView alloc]initWithShareStyle:qzoneBtn name:@"QQ空间"];
+        qqZoneShareView.frame = CGRectMake(CGRectGetMinX(qqShareView.frame)+CGRectGetWidth(qqShareView.frame)+btnSpace, 40, 45, 45);
+        [_sharePanel addSubview:qqZoneShareView];
+        
+        
         
         _wxButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_wxButton setImage:[UIImage imageNamed:@"wxShareIcon"] forState:UIControlStateNormal];
-        _wxButton.frame = CGRectMake(145, 40, 45, 45);
-        [_sharePanel addSubview:_wxButton];
+        _wxButton.frame = CGRectMake(CGRectGetMinX(qzoneBtn.frame)+CGRectGetWidth(qzoneBtn.frame)+btnSpace, 40, 45, 45);
         [_wxButton addTarget:self action:@selector(wxShare:) forControlEvents:UIControlEventTouchUpInside];
+        YCShareView *wxShareView = [[YCShareView alloc]initWithShareStyle:_wxButton name:@"微信好友"];
+        wxShareView.frame = CGRectMake(CGRectGetMinX(qqZoneShareView.frame)+CGRectGetWidth(qqZoneShareView.frame)+btnSpace, 40, 45, 45);
+        [_sharePanel addSubview:wxShareView];
         
+        UIButton *wxTimelineBtn = [UIButton buttonWithType:UIButtonTypeCustom] ;
+        [wxTimelineBtn setImage:[UIImage imageNamed:@"timeline"] forState:UIControlStateNormal];
+        [wxTimelineBtn addTarget:self action:@selector(wxTimelineShare:) forControlEvents:UIControlEventTouchUpInside];
+        YCShareView *wxtimeLineShareView = [[YCShareView alloc]initWithShareStyle:wxTimelineBtn name:@"微信朋友圈"];
+        wxtimeLineShareView.frame = CGRectMake(CGRectGetMinX(wxShareView.frame)+CGRectGetWidth(wxShareView.frame)+btnSpace, 40, 45, 45);
+        [_sharePanel addSubview:wxtimeLineShareView];
         
         _weiboButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_weiboButton setImage:[UIImage imageNamed:@"weiboLogo"] forState:UIControlStateNormal];
-        _weiboButton.frame = CGRectMake(215, 40, 45, 45);
-        [_sharePanel addSubview:_weiboButton];
         [_weiboButton addTarget:self action:@selector(weiboShare:) forControlEvents:UIControlEventTouchUpInside];
+        YCShareView *weiboShareView = [[YCShareView alloc]initWithShareStyle:_weiboButton name:@"新浪微博"];
+        weiboShareView.frame = CGRectMake(CGRectGetMinX(wxtimeLineShareView.frame)+CGRectGetWidth(wxtimeLineShareView.frame)+btnSpace, 40, 45, 45) ;
+        [_sharePanel addSubview:weiboShareView];
+        
         _sharePanelBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(_sharePanel.frame)-44, CGRectGetWidth(_sharePanel.frame), 44)];
         _sharePanelBackBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [_sharePanelBackBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -252,7 +277,14 @@
 {
     NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
     QQBaseReq *req =  [QQShareManager QQNewsReq:htmlUrl htmlTitle:[YCShareManager sharedManager].shareTitle htmlDescription:[YCShareManager sharedManager].shareDescription previewImageUrl:[YCShareManager sharedManager].shareIconUrl] ;
-    [YCShareManager sendReq:req];
+    [[QQShareManager sharedManager] sendReq:req scene:QQ];
+}
+
+-(void)qqZoneShare:(id)sender
+{
+    NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+    QQBaseReq *req =  [QQShareManager QQNewsReq:htmlUrl htmlTitle:[YCShareManager sharedManager].shareTitle htmlDescription:[YCShareManager sharedManager].shareDescription previewImageUrl:[YCShareManager sharedManager].shareIconUrl] ;
+    [[QQShareManager sharedManager] sendReq:req scene:QZONE];
 }
 
 -(void)weiboShare:(id)sender
@@ -285,16 +317,36 @@
         NSLog(@"Response: %@", responseObject);
         UIImage *image = [UIImage imageWithData:responseObject];
         NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
-        SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription thumbImag:image];
+        SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription thumbImag:image scene:WeiXin];
         [YCShareManager sendReq:req];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Image error: %@", error); NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
-        SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription thumbImag:nil];
+        SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription thumbImag:nil scene:WeiXin];
         [YCShareManager sendReq:req];
     }];
     [requestOperation start];
 
+}
+
+-(void)wxTimelineShare:(id)sender
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[YCShareManager sharedManager].shareIconUrl]] ;
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+        UIImage *image = [UIImage imageWithData:responseObject];
+        NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+        SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription thumbImag:image scene:WeiXinTimeLine];
+        [YCShareManager sendReq:req];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Image error: %@", error); NSString *htmlUrl = [YCShareManager sharedManager].shareRedirectURL ;
+        SendMessageToWXReq *req = [WXShareManager WXPageReq:htmlUrl title:[YCShareManager sharedManager].shareTitle  description:[YCShareManager sharedManager].shareDescription thumbImag:nil scene:WeiXinTimeLine];
+        [YCShareManager sendReq:req];
+    }];
+    [requestOperation start];
 }
 
 -(void)leftButtonClick
@@ -663,6 +715,14 @@
         // load more
         [self.webView evaluateJavaScript:@"pushUp();" completionHandler:nil];
     }
+}
+
+-(void)close
+{
+    if ([self.navigationController.viewControllers count]>1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
 }
 
 @end

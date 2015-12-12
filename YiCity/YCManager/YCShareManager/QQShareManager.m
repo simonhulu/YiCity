@@ -39,10 +39,17 @@ static QQShareManager *singleton = nil ;
     _tencentOAuth = [[TencentOAuth alloc]initWithAppId:appID andDelegate:self] ;
 }
 
--(BOOL)sendReq:(QQBaseReq *)req
+-(BOOL)sendReq:(QQBaseReq *)req scene:(QQScene)scene
 {
     if (_tencentOAuth) {
-        QQApiSendResultCode code = [QQApiInterface SendReqToQZone:req] ;
+        QQApiSendResultCode code ;
+        if (scene == QQ) {
+            code = [QQApiInterface sendReq:req] ;
+        }else
+        {
+            code = [QQApiInterface SendReqToQZone:req] ;
+        }
+
         if (code == EQQAPISENDSUCESS) {
             return YES ;
         }else

@@ -80,6 +80,9 @@
 		6D76FF781C09686C00AF2327 /* YCShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D76FF741C09686C00AF2327 /* YCShareManager.m */; };
 		6D76FF7C1C09689200AF2327 /* YCHeaderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D76FF7B1C09689200AF2327 /* YCHeaderBar.m */; };
 		6D76FF801C0968BC00AF2327 /* YCShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D76FF7E1C0968BC00AF2327 /* YCShareViewController.m */; };
+		6D7BA0081C1BEB7200832676 /* YCShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BA0071C1BEB7200832676 /* YCShareView.m */; };
+		6D7BA0111C1C01E800832676 /* qZone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7BA00F1C1C01E800832676 /* qZone@2x.png */; };
+		6D7BA0121C1C01E800832676 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7BA0101C1C01E800832676 /* timeline@2x.png */; };
 		6DAD00341C13352000EAFE59 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD00101C13352000EAFE59 /* AFHTTPRequestOperation.m */; };
 		6DAD00351C13352000EAFE59 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD00121C13352000EAFE59 /* AFHTTPRequestOperationManager.m */; };
 		6DAD00361C13352000EAFE59 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD00141C13352000EAFE59 /* AFHTTPSessionManager.m */; };
@@ -238,6 +241,10 @@
 		6D76FF7B1C09689200AF2327 /* YCHeaderBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHeaderBar.m; sourceTree = "<group>"; };
 		6D76FF7D1C0968BC00AF2327 /* YCShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCShareViewController.h; sourceTree = "<group>"; };
 		6D76FF7E1C0968BC00AF2327 /* YCShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCShareViewController.m; sourceTree = "<group>"; };
+		6D7BA0061C1BEB7200832676 /* YCShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCShareView.h; sourceTree = "<group>"; };
+		6D7BA0071C1BEB7200832676 /* YCShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCShareView.m; sourceTree = "<group>"; };
+		6D7BA00F1C1C01E800832676 /* qZone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qZone@2x.png"; sourceTree = "<group>"; };
+		6D7BA0101C1C01E800832676 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
 		6DAD000F1C13352000EAFE59 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		6DAD00101C13352000EAFE59 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		6DAD00111C13352000EAFE59 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -540,6 +547,8 @@
 		6D76FF541C095CDA00AF2327 /* share */ = {
 			isa = PBXGroup;
 			children = (
+				6D7BA00F1C1C01E800832676 /* qZone@2x.png */,
+				6D7BA0101C1C01E800832676 /* timeline@2x.png */,
 				6D54B4901C0C853A0068F5AE /* weiboLogo.png */,
 				6D54B4911C0C853A0068F5AE /* weiboLogo@2x.png */,
 				6D54B4921C0C853A0068F5AE /* weiboLogo@3x.png */,
@@ -606,6 +615,8 @@
 				6D76FF7B1C09689200AF2327 /* YCHeaderBar.m */,
 				6D54B48B1C09AB430068F5AE /* YCHTMLButton.h */,
 				6D54B48C1C09AB430068F5AE /* YCHTMLButton.m */,
+				6D7BA0061C1BEB7200832676 /* YCShareView.h */,
+				6D7BA0071C1BEB7200832676 /* YCShareView.m */,
 			);
 			path = YCControls;
 			sourceTree = "<group>";
@@ -751,6 +762,7 @@
 				6D76FB6C1C0016D300AF2327 /* Images.xcassets in Resources */,
 				6D76FEDD1C09559D00AF2327 /* read_me.txt in Resources */,
 				6D54B4931C0C853A0068F5AE /* weiboLogo.png in Resources */,
+				6D7BA0121C1C01E800832676 /* timeline@2x.png in Resources */,
 				6D54B48F1C0C83870068F5AE /* yicityLogo.png in Resources */,
 				6DAD004C1C1424D400EAFE59 /* launchImage@3x.png in Resources */,
 				6D54B4871C09A3CC0068F5AE /* wxShareIcon@3x.png in Resources */,
@@ -773,6 +785,7 @@
 				6D76FBC81C01AD7500AF2327 /* MoreInfo@2x.png in Resources */,
 				6D76FBCD1C01AD8000AF2327 /* user@3x.png in Resources */,
 				6D469EB81C0F3D3100CE74CC /* LICENSE in Resources */,
+				6D7BA0111C1C01E800832676 /* qZone@2x.png in Resources */,
 				6D76FEDE1C09559D00AF2327 /* .gitignore in Resources */,
 				6D76FBC61C01AD7500AF2327 /* Home@2x.png in Resources */,
 				6D76FF071C09559D00AF2327 /* WeiboSDK.bundle in Resources */,
@@ -797,6 +810,7 @@
 			files = (
 				6DAD00431C13352100EAFE59 /* UIRefreshControl+AFNetworking.m in Sources */,
 				6D76FBAD1C01915F00AF2327 /* UIColor+Hex.m in Sources */,
+				6D7BA0081C1BEB7200832676 /* YCShareView.m in Sources */,
 				6D76FF751C09686C00AF2327 /* YCReceivePushMessageManager.m in Sources */,
 				6D76FB8D1C006C5600AF2327 /* YCWebView.m in Sources */,
 				6DAD00441C13352100EAFE59 /* UIWebView+AFNetworking.m in Sources */,
@@ -965,6 +979,7 @@
 					"$(PROJECT_DIR)/YiCity/YCVendors/iOS_OpenSDK_2.9.3_all",
 				);
 				INFOPLIST_FILE = YiCity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -990,6 +1005,7 @@
 					"$(PROJECT_DIR)/YiCity/YCVendors/iOS_OpenSDK_2.9.3_all",
 				);
 				INFOPLIST_FILE = YiCity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

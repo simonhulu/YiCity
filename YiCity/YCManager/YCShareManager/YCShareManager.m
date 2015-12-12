@@ -35,7 +35,7 @@ static YCShareManager *singleton = nil ;
     BOOL ret = NO ;
     if ([req isKindOfClass:[QQBaseReq class]]) {
         QQBaseReq *qqReq = (QQBaseReq *)req ;
-       ret =  [[QQShareManager sharedManager] sendReq:qqReq];
+       ret =  [[QQShareManager sharedManager] sendReq:qqReq scene:QZONE];
     }else if ([req isKindOfClass:[SendMessageToWXReq class]])
     {
         SendMessageToWXReq *wxReq = (SendMessageToWXReq *)req ;

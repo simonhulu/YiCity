@@ -72,13 +72,13 @@ static WeiboManager *singleton = nil ;
 +(WBBaseRequest *)WeiboPageReq:(NSString *)htmlUrl title:(NSString *)title description:(NSString *)description thumbnailData:(NSData *)thumbnailData ;
 {
     WBMessageObject *message = [WBMessageObject message];
-    WBWebpageObject *webpage = [WBWebpageObject object];
-    webpage.objectID = @"identifier1";
-    webpage.title = NSLocalizedString(title, nil);
-    webpage.description = [NSString stringWithFormat:NSLocalizedString(@"'%@'", nil),description];
-    webpage.thumbnailData = thumbnailData;
-    webpage.webpageUrl = htmlUrl;
-    message.mediaObject = webpage;
+    WBImageObject *webpage = [WBImageObject object];
+//    webpage.objectID = @"identifier1";
+//    webpage.title = NSLocalizedString(title, nil);
+//    webpage.description = [NSString stringWithFormat:NSLocalizedString(@"'%@'", nil),description];
+    message.text = [NSString stringWithFormat:@"%@ %@",description,htmlUrl] ;
+    webpage.imageData = thumbnailData;
+    message.imageObject = webpage;
     WBSendMessageToWeiboRequest *req = [WBSendMessageToWeiboRequest requestWithMessage:message] ;
     return req ;
 }

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YCShareVIew : UIView
-
+@interface YCShareView : UIView
+-(instancetype)initWithShareStyle:(UIButton *)btn name:(NSString *)name ;
 @end

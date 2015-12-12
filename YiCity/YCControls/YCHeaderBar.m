@@ -7,11 +7,13 @@
 //
 
 #import "YCHeaderBar.h"
+#import "EDColor.h"
 @interface YCHeaderBar()
 {
     UILabel *_titleLabel ;
     NSMutableArray *_rightButtons ;
     CALayer *bottomLayer ;
+    UIButton *closeBtn ;
 }
 @end
 @implementation YCHeaderBar
@@ -41,6 +43,13 @@
     //_rightButton.frame = CGRectMake(CGRectGetWidth(self.frame)-45, 0, 45, 45) ;
     [_leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     //[_rightButton setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
+    closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
+    closeBtn.titleLabel.font = [UIFont systemFontOfSize:15] ;
+    [closeBtn setTitleColor:[UIColor colorWithHexString:@"#FD5E0F"] forState:UIControlStateNormal];
+    closeBtn.frame = CGRectMake(45, 0, 45, 45) ;
+    [closeBtn addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:closeBtn];
     [self addSubview:_titleLabel ];
     [self addSubview:_leftButton];
         [self.layer addSublayer:bottomLayer];
@@ -113,6 +122,15 @@
 {
     _title = title ;
     _titleLabel.text = title ;
+}
+
+-(void)close:(id)sender 
+{
+    if (_delegate) {
+        if ([_delegate respondsToSelector:@selector(close)]) {
+            [_delegate close];
+        }
+    }
 }
 
 @end
