@@ -213,43 +213,43 @@
 {
     if (!_sharePanel) {
         CGFloat btnSpace = 3.0f ;
-        _sharePanel  = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame), CGRectGetWidth(self.view.frame), 150)];
+        _sharePanel  = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame), CGRectGetWidth(self.view.frame), 250)];
         _qqButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_qqButton setImage:[UIImage imageNamed:@"qqShareIcon"] forState:UIControlStateNormal];
         [_qqButton addTarget:self action:@selector(qqShare:) forControlEvents:UIControlEventTouchUpInside];
         YCShareView *qqShareView = [[YCShareView alloc]initWithShareStyle:_qqButton name:@"QQ好友"];
-        qqShareView.frame = CGRectMake(0, 40, 45, 45);
+        qqShareView.frame = CGRectMake(30, 30, 45, 45);
         [_sharePanel addSubview:qqShareView];
         
         UIButton *qzoneBtn = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [qzoneBtn setImage:[UIImage imageNamed:@"qZone"] forState:UIControlStateNormal];
         [qzoneBtn addTarget:self action:@selector(qqZoneShare:) forControlEvents:UIControlEventTouchUpInside];
         YCShareView *qqZoneShareView = [[YCShareView alloc]initWithShareStyle:qzoneBtn name:@"QQ空间"];
-        qqZoneShareView.frame = CGRectMake(CGRectGetMinX(qqShareView.frame)+CGRectGetWidth(qqShareView.frame)+btnSpace, 40, 45, 45);
+        qqZoneShareView.frame = CGRectMake(CGRectGetMinX(qqShareView.frame)+CGRectGetWidth(qqShareView.frame)+btnSpace, 30, 45, 45);
         [_sharePanel addSubview:qqZoneShareView];
         
         
         
         _wxButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_wxButton setImage:[UIImage imageNamed:@"wxShareIcon"] forState:UIControlStateNormal];
-        _wxButton.frame = CGRectMake(CGRectGetMinX(qzoneBtn.frame)+CGRectGetWidth(qzoneBtn.frame)+btnSpace, 40, 45, 45);
+        _wxButton.frame = CGRectMake(CGRectGetMinX(qzoneBtn.frame)+CGRectGetWidth(qzoneBtn.frame)+btnSpace, 30, 45, 45);
         [_wxButton addTarget:self action:@selector(wxShare:) forControlEvents:UIControlEventTouchUpInside];
         YCShareView *wxShareView = [[YCShareView alloc]initWithShareStyle:_wxButton name:@"微信好友"];
-        wxShareView.frame = CGRectMake(CGRectGetMinX(qqZoneShareView.frame)+CGRectGetWidth(qqZoneShareView.frame)+btnSpace, 40, 45, 45);
+        wxShareView.frame = CGRectMake(CGRectGetMinX(qqZoneShareView.frame)+CGRectGetWidth(qqZoneShareView.frame)+btnSpace, 30, 45, 45);
         [_sharePanel addSubview:wxShareView];
         
         UIButton *wxTimelineBtn = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [wxTimelineBtn setImage:[UIImage imageNamed:@"timeline"] forState:UIControlStateNormal];
         [wxTimelineBtn addTarget:self action:@selector(wxTimelineShare:) forControlEvents:UIControlEventTouchUpInside];
         YCShareView *wxtimeLineShareView = [[YCShareView alloc]initWithShareStyle:wxTimelineBtn name:@"微信朋友圈"];
-        wxtimeLineShareView.frame = CGRectMake(CGRectGetMinX(wxShareView.frame)+CGRectGetWidth(wxShareView.frame)+btnSpace, 40, 45, 45);
+        wxtimeLineShareView.frame = CGRectMake(CGRectGetMinX(wxShareView.frame)+CGRectGetWidth(wxShareView.frame)+btnSpace, 30, 45, 45);
         [_sharePanel addSubview:wxtimeLineShareView];
         
         _weiboButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         [_weiboButton setImage:[UIImage imageNamed:@"weiboLogo"] forState:UIControlStateNormal];
         [_weiboButton addTarget:self action:@selector(weiboShare:) forControlEvents:UIControlEventTouchUpInside];
         YCShareView *weiboShareView = [[YCShareView alloc]initWithShareStyle:_weiboButton name:@"新浪微博"];
-        weiboShareView.frame = CGRectMake(CGRectGetMinX(wxtimeLineShareView.frame)+CGRectGetWidth(wxtimeLineShareView.frame)+btnSpace, 40, 45, 45) ;
+        weiboShareView.frame = CGRectMake(30, 100, 45, 45) ;
         [_sharePanel addSubview:weiboShareView];
         
         _sharePanelBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(_sharePanel.frame)-44, CGRectGetWidth(_sharePanel.frame), 44)];
@@ -263,7 +263,7 @@
     _sharePanel.backgroundColor = [UIColor whiteColor] ;
     [_shareView addSubview:_sharePanel];
     [UIView animateWithDuration:0.3f animations:^{
-        _sharePanel.frame = CGRectMake(0, CGRectGetHeight(self.view.frame) - 150 , CGRectGetWidth(self.view.frame), 150) ;
+        _sharePanel.frame = CGRectMake(0, CGRectGetHeight(self.view.frame) - 250 , CGRectGetWidth(self.view.frame), 250) ;
     } completion:^(BOOL finished) {
         
     }];

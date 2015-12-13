@@ -44,8 +44,7 @@
     [_leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     //[_rightButton setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
     closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
-    closeBtn.titleLabel.font = [UIFont systemFontOfSize:15] ;
+    [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
     [closeBtn setTitleColor:[UIColor colorWithHexString:@"#FD5E0F"] forState:UIControlStateNormal];
     closeBtn.frame = CGRectMake(45, 0, 45, 45) ;
     [closeBtn addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
