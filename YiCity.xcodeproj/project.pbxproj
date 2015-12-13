@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D0570F21C1D1C4700FD7878 /* close2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0570F11C1D1C4700FD7878 /* close2x.png */; };
+		6D0570F61C1D390000FD7878 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0570F51C1D390000FD7878 /* close@2x.png */; };
 		6D2A29001C0F297E00B32BF2 /* YCRootWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2A28FF1C0F297E00B32BF2 /* YCRootWebViewController.m */; };
 		6D469EB81C0F3D3100CE74CC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6D469EAF1C0F3D3100CE74CC /* LICENSE */; };
 		6D469EB91C0F3D3100CE74CC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6D469EB01C0F3D3100CE74CC /* README.md */; };
@@ -119,7 +119,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6D0570F11C1D1C4700FD7878 /* close2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close2x.png; sourceTree = "<group>"; };
+		6D0570F51C1D390000FD7878 /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
 		6D2A28FE1C0F297E00B32BF2 /* YCRootWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCRootWebViewController.h; sourceTree = "<group>"; };
 		6D2A28FF1C0F297E00B32BF2 /* YCRootWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCRootWebViewController.m; sourceTree = "<group>"; };
 		6D469EAF1C0F3D3100CE74CC /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -440,8 +440,8 @@
 		6D76FB961C018CF200AF2327 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				6D0570F11C1D1C4700FD7878 /* close2x.png */,
 				F1BFCE0E1C1A6D3400F44805 /* icon@2x.png */,
+				6D0570F51C1D390000FD7878 /* close@2x.png */,
 				F1BFCE0F1C1A6D3400F44805 /* icon@3x.png */,
 				6DAD00491C1424D400EAFE59 /* launchImage@2x.png */,
 				6DAD004A1C1424D400EAFE59 /* launchImage@3x.png */,
@@ -759,7 +759,6 @@
 			files = (
 				6D54B4941C0C853A0068F5AE /* weiboLogo@2x.png in Resources */,
 				6D76FB6F1C0016D300AF2327 /* LaunchScreen.xib in Resources */,
-				6D0570F21C1D1C4700FD7878 /* close2x.png in Resources */,
 				6D54B4861C09A3CC0068F5AE /* wxShareIcon@2x.png in Resources */,
 				F1BFCE101C1A6D3400F44805 /* icon@2x.png in Resources */,
 				6D76FBC41C01AD7500AF2327 /* create@2x.png in Resources */,
@@ -767,6 +766,7 @@
 				6D76FEDD1C09559D00AF2327 /* read_me.txt in Resources */,
 				6D54B4931C0C853A0068F5AE /* weiboLogo.png in Resources */,
 				6D7BA0121C1C01E800832676 /* timeline@2x.png in Resources */,
+				6D0570F61C1D390000FD7878 /* close@2x.png in Resources */,
 				6D54B48F1C0C83870068F5AE /* yicityLogo.png in Resources */,
 				6DAD004C1C1424D400EAFE59 /* launchImage@3x.png in Resources */,
 				6D54B4871C09A3CC0068F5AE /* wxShareIcon@3x.png in Resources */,

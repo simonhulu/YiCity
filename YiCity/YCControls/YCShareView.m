@@ -41,7 +41,7 @@
     _shareName = [[UILabel alloc]initWithFrame:CGRectMake(0, 45, 45, 20)];
     _shareName.text = _name ;
     _shareName.textAlignment = NSTextAlignmentCenter ;
-    _shareName.font = [UIFont systemFontOfSize:10];
+    _shareName.font = [UIFont systemFontOfSize:9];
     self.frame = CGRectMake(0, 0, 65, 65);
     [self addSubview:_btn];
     [self addSubview:_shareName];

@@ -23,7 +23,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
 #import "YCShareVIew.h"
-@interface YCWebViewController()<UIWebViewDelegate,WKUIDelegate,YCWebNavigationDelegate,UITableViewDataSource, UITableViewDelegate,WKScriptMessageHandler,YCThirdLoginDelegate>
+@interface YCWebViewController()<UIWebViewDelegate,WKUIDelegate,YCWebNavigationDelegate,UITableViewDataSource, UITableViewDelegate,WKScriptMessageHandler,YCThirdLoginDelegate,UIGestureRecognizerDelegate>
 {
     BOOL linkCliked ;
 }
@@ -143,16 +143,18 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated] ;
-    if (!_leftSwipGesture) {
-        _leftSwipGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipeAction:)];
-        _leftSwipGesture.direction = (UISwipeGestureRecognizerDirectionLeft );
-        [self.view addGestureRecognizer:_leftSwipGesture];
-    }
-    if (!_rightSwipGesture) {
-        _rightSwipGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipeAction:)];
-        _rightSwipGesture.direction = (UISwipeGestureRecognizerDirectionRight );
-        [self.view addGestureRecognizer:_rightSwipGesture];
-    }
+//    if (!_leftSwipGesture) {
+//        _leftSwipGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipeAction:)];
+//        _leftSwipGesture.direction = (UISwipeGestureRecognizerDirectionLeft );
+//        [self.view addGestureRecognizer:_leftSwipGesture];
+//    }
+//    if (!_rightSwipGesture) {
+//        _rightSwipGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipeAction:)];
+//        _rightSwipGesture.direction = (UISwipeGestureRecognizerDirectionRight );
+//        [self.view addGestureRecognizer:_rightSwipGesture];
+//    }
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES ;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 -(void)leftSwipeAction:(UISwipeGestureRecognizer *)gestureRecognizer
@@ -469,7 +471,16 @@
 
 - (void)webView:(YCWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-
+    if(self.webView.canGoBack)
+    {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil ;
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO ;
+    }else
+    {
+        self.navigationController.interactivePopGestureRecognizer.delegate = self ;
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES ;
+    }
+    NSLog(@"didFinishNavigation");
 }
 
 - (void)webView:(YCWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
@@ -534,6 +545,7 @@
         }
     }
 
+
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
@@ -553,7 +565,7 @@
 {
     //不等于开始时的url
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:[self.webView isLoading]];
-        [self.webView evaluateJavaScript:@"var u = navigator.userAgent; window.webkit.messageHandlers.observe.postMessage(u)" completionHandler:nil];
+    [self.webView evaluateJavaScript:@"var u = navigator.userAgent; window.webkit.messageHandlers.observe.postMessage(u)" completionHandler:nil];
 }
 
 #pragma mark - WKScriptMessageHander

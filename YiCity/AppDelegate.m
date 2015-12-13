@@ -65,7 +65,7 @@
     tabBarController.tabBar.backgroundColor = [UIColor  colorWithHexString:@"#eeeeee"] ;
     YCNavigationController *navController = [[YCNavigationController alloc]initWithRootViewController:tabBarController];
     navController.navigationBarHidden = YES ;
-    navController.interactivePopGestureRecognizer.enabled = NO ;
+    navController.interactivePopGestureRecognizer.enabled = YES ;
     self.window.rootViewController = navController ;
     [self.window makeKeyAndVisible];
     return YES;
