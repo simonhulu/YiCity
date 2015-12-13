@@ -443,6 +443,11 @@
     }
 }
 
+-(void)reload
+{
+    [self.webView reload];
+}
+
 #pragma mark - 
 
 

@@ -19,8 +19,8 @@
 
 - (instancetype)initWithURL:(NSURL*)pageURL ;
 - (instancetype)initWithURLRequest:(NSURLRequest*)request ;
+-(void)reload;
 @property (nonatomic, weak) id<UIWebViewDelegate> delegate;
 @property(nonatomic,assign)BOOL showBackButton ;
 @property(nonatomic,assign)BOOL isRoot ;
-
 @end
