@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>BaiduMobStatSample.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2275572414600461002FFD6B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E11554481B6F5EA90048CFB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E11554701B6F5F490048CFB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E11554981B6F5F810048CFB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E11554BC1B6F5FB80048CFB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E17D0EAE1B6F54DB000BC66B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

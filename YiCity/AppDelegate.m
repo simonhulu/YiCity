@@ -20,6 +20,8 @@
 #import "WXShareManager.h"
 #import "QQShareManager.h"
 #import "WeiboManager.h"
+#import "BaiduMobStat.h"
+#import "YMStatMacors.h"
 @interface AppDelegate ()
 {
     UINavigationController *nav;
@@ -40,6 +42,9 @@
 //    nav = [[UINavigationController alloc]initWithRootViewController:viewController];
 //    nav.navigationBarHidden = YES ;
 //    self.window.rootViewController = nav ;
+    BaiduMobStat *statTracker = [BaiduMobStat defaultStat];
+    [BaiduMobStat defaultStat].shortAppVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [statTracker startWithAppId:BAIDUSTATKEY];
     [YCShareManager registerApp] ;
     [[WKProcessPoolManager sharedManager] setUserAgent:^{
         

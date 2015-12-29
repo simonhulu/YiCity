@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6A1A0E0826877881E533ED539F263F0353936DBD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BEEE0D24D6401C821EC7A24D30A0A4D9C92CD362" : 0,
+    "6A1A0E0826877881E533ED539F263F0353936DBD" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5919FB4B-7837-4957-AE35-96CC9EEEA28B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BEEE0D24D6401C821EC7A24D30A0A4D9C92CD362" : "..",
+    "6A1A0E0826877881E533ED539F263F0353936DBD" : "YiCity\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BaiduMobStatSample",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "YiCity\/YCVendors\/BaiduMTJ_iOS_App_Crash_V3.6.2\/ios_demo\/BaiduMobStatDemo\/BaiduMobStatSample.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tmyk104117\/YiCity.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6A1A0E0826877881E533ED539F263F0353936DBD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:tmyk104117\/YiCity.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BEEE0D24D6401C821EC7A24D30A0A4D9C92CD362"
+    }
+  ]
+}
